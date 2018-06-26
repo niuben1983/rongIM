@@ -1,0 +1,10 @@
+<div class="recall">
+    <div class="recall_main">
+        <div class="recall_title">验证手机号{{ mobile }}，查看聊天纪录。</div>
+        <div class="recall_form clearfix">
+            <input type="text" class="recall_form_inp">
+            <button :class="{recall_form_btn: true, off: isGetCoding}" @click.prevent="getCode">{{ getCodeBtnText }}</button>
+        </div>
+        <button class="recall_send" @click.prevent="send()">验证</button>
+    </div>
+</div>

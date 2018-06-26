@@ -1,0 +1,162 @@
+<div class="messagesDetail">
+    <div class="md_head clearfix">
+        <div class="md_head_avatar"><img :src="dealerInfo.url" alt=""></div>
+        <router-link :to="{ name: 'map', query: { log: dealerInfo.dealerLog, lat: dealerInfo.dealerLat }}"
+                     class="md_head_range"></router-link>
+        <div class="md_head_con">
+            <div class="md_company oneline">{{ dealerInfo.dealerName }}</div>
+            <div class="md_name oneline">销售专员 {{ dealerInfo.name }} 为您服务</div>
+        </div>
+    </div>
+
+    <div class="md_con">
+        <scroller :on-refresh="refresh" refreshText="下拉查看消息" ref="myscroller">
+
+            <ul ref="myscrollerBox">
+                <!--<li class="item mod_left">-->
+                    <!--<div class="con_wrap">-->
+                        <!--<div class="dealer_a"><img :src="dealerInfo.headImg" alt=""></div>-->
+                        <!--<div class="text">静态-&#45;&#45;收到{{ dealerInfo.name }}客户信息登记邀请，-->
+                            <!--<span @click="toggetRegister(true)" class="c-red text-underline">点击进行登记</span></div>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li class="item mod_left">-->
+                <!--<div class="time">2017/11/07 15:25</div>-->
+                <!--<div class="con_wrap">-->
+                <!--<div class="dealer_a"></div>-->
+                <!--<div class="text">-->
+                <!--<div class="textmsg">-->
+                <!--<div class="title_and_des">-->
+                <!--<div class="title oneline">奥迪A3金融购车方案 </div>-->
+                <!--<div class="des towline">双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠</div>-->
+                <!--</div>-->
+                <!--<div class="img_wrap"></div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+                <li :class="item.senderUserId == item.targetId ? 'item mod_left' : 'item mod_right'"
+                    v-for="(item, key) in list" :key="key">
+                    <template v-if="item.content.extra.txtMsgType == 5">
+                        <div class="tips">{{ item.content.content }}</div>
+                    </template>
+                    <template v-else>
+                        <div class="time" v-show="item._showTime">{{ item.sentTime | formatDate }}</div>
+                        <!--客服发送-->
+                        <div v-if="item.senderUserId == targetId">
+                            <!--<div class="con_wrap" v-if="item.messageType == 'RichContentMessage'">-->
+                                <!--<div class="dealer_a"><img :src="dealerInfo.headImg" alt=""></div>-->
+                                <!--<div class="text">-->
+                                    <!--<div class="textmsg">-->
+                                        <!--<div class="title_and_des">-->
+                                            <!--<div class="title oneline">奥迪A3金融购车方案</div>-->
+                                            <!--<div class="des towline">双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中，-->
+                                                <!--欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中，-->
+                                                <!--欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中， 欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠双十一A3优惠活动促销中，-->
+                                                <!--欢迎到店咨询，详细优惠 欢迎到店咨询，详细优惠-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="img_wrap"></div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="con_wrap" v-if="item.messageType == 'ImageMessage'">
+                                <div class="dealer_a"><img :src="item.content.extra.counselor.headImg | imgDefault" alt=""></div>
+                                <div class="img">
+                                    <img :src="item.content.imageUri" @click="fancyBox($event, item.content.imageUri)" alt="">
+                                </div>
+                            </div>
+                            <div class="con_wrap" v-else>
+                                <div class="dealer_a"><img :src="item.content.extra.counselor.headImg | imgDefault" alt=""></div>
+
+                                <!--邀请留资消息-->
+                                <div v-if="item.content.extra.txtMsgType == 1 && !dealerInfo.todayLeadsState" class="text"  @click="toggetRegister(true)">{{ item.content.content }}
+                                    <span class="c-red text-underline" v-if="!dealerInfo.todayLeadsState">点击进行登记</span>
+                                </div>
+                                <!--阀值留资消息-->
+                                <div v-else-if="item.content.extra.txtMsgType == 4 && !dealerInfo.todayLeadsState" class="text"  @click="toggetRegister(true)">{{ item.content.content }}
+                                    <span class="c-red text-underline" v-if="!dealerInfo.todayLeadsState">点击进行登记</span>
+                                </div>
+                                <!--不在线自动回复消息-->
+                                <div v-else-if="item.content.extra.txtMsgType == 2" class="text"><span class="c-red">[自动回复]</span>{{ item.content.content }}</div>
+                                <!--在线自动回复消息-->
+                                <div v-else-if="item.content.extra.txtMsgType == 3" class="text"><span class="c-red">[自动回复]</span>{{ item.content.content }}</div>
+                                <!--普通消息-->
+                                <!--<div v-else class="text" v-="item.content.content | formatEmoji">{{item.content.content | formatEmoji}}</div>-->
+                                <div v-else class="text" >{{item.content.content | formatEmoji}}</div>
+                            </div>
+                        </div>
+                        <!--我发送的-->
+                        <div v-else>
+                            <div class="con_wrap">
+                                <div class="dealer_a"><img :src="userInfo.userPic" alt=""></div>
+                                <!--图片消息-->
+                                <div class="img" v-if="item.messageType == 'ImageMessage'">
+                                    <img :src="item.content.imageUri" @click="fancyBox($event, item.content.imageUri)" alt="">
+                                    <div class="again_animation" v-show="item.state == 1"></div>
+                                    <div class="icon" v-show="item.state == 3" @click="againSendMsg(item.content.extra.xyMsgId, 2)">!</div>
+                                </div>
+                                <!--文本消息-->
+                                <div v-else>
+                                    <!--留资成功-->
+                                    <div class="text suc" v-if="item.content.extra.txtMsgType == 1">已完成信息登记</div>
+                                    <!--普通消息-->
+                                    <div class="text" v-else>
+                                        {{ item.content.content | formatEmoji}}
+                                        <div class="again_animation" v-show="item.state == 1"></div>
+                                        <div class="icon" v-show="item.state == 3" @click="againSendMsg(item.content.extra.xyMsgId, 1)">!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </li>
+            </ul>
+
+        </scroller>
+    </div>
+
+    <div class="input_wrap">
+        <div class="input_wrap_form">
+            <div class="f_acc">
+                <span @click="switchEmoji" :class="{'active' : showEmoji}"></span>
+                <span @click="switchPicBox" :class="{'active' : showPicBox}"></span>
+            </div>
+            <input type="text" v-model="preMsg" @focus="focusPreMsg()"/>
+            <span :class="{ 'f_send': true, 'disabeld': preMsg == '' }" @click="sendMsg"></span>
+        </div>
+
+        <div class="picbox clearfix" v-show="showPicBox">
+            <div class="pic_zp">照片
+                <form ref='phoneForm'><input type="file" @change="uploadFile($event)" accept="image/*"></form>
+            </div>
+        </div>
+        <emoji v-show="showEmoji" v-on:pickEmoji="clickEmoji"></emoji>
+    </div>
+
+    <!--更换联系人-->
+    <!--<div class="md_tips" v-if="updateTips">-->
+        <!--<div class="md_tips_con">-->
+            <!--<span class="close" @click="closeUpdateTips()"></span>-->
+            <!--<p class="main">您好，我是您新的销售顾问-{{ dealerInfo.name }}，以后由我来为您提供服务</p>-->
+            <!--<span class="btn" @click="closeUpdateTips()">我知道了</span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--留资-->
+    <transition name="slide-fade">
+        <register v-if="showRegister" :svrInfo="{name: dealerInfo.name, headImg: dealerInfo.headImg}" @toggetRegister="toggetRegister"></register>
+    </transition>
+
+    <!--召回-->
+    <recall v-show="showRecall" :mobile="recallMobile" @toggetRecall="toggetRecall"></recall>
+
+    <!--预览大图-->
+    <transition name="slide-fade">
+        <div class="fancyBox" v-show="showFancyBox" @click="toggetFancyBox(false)">
+            <img :src="fancyImgUrl"
+                 :style="{width: fancyImg.w, height: fancyImg.h, marginTop: fancyImg.mt, marginLeft: fancyImg.ml }"
+                 class="fancyImg" alt="">
+        </div>
+    </transition>
+</div>

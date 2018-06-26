@@ -1,0 +1,74 @@
+.recall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 173px 30px 0;
+    box-sizing: border-box;
+    background: rgba(0,0,0,.5);
+    z-index: 10;
+    &_main {
+        padding: 0 50px 72px;
+        background: #fff;
+        border-radius: 0 20px 0 20px;
+
+    }
+    &_title {
+        padding-top: 50px;
+        font-size: 30px;
+    }
+    &_form {
+        padding-top: 35px;
+        &_inp {
+            float: left;
+            width: 390px;
+            padding:0 19px;
+            line-height: 68px;
+            font-size: 26px;
+            color: #333;
+            border: 1px solid #c6c6c6; /*no*/
+            border-radius: 5px;
+            box-sizing: border-box;
+            &::-webkit-input-placeholder{
+                color: #c6c6c6;
+            }
+        }
+        &_btn {
+            float: right;
+            width:174px;
+            line-height: 68px;
+            font-size: 26px;
+            color:#bb0a30;
+            border: 1px solid #bb0a30; /*no*/
+            border-radius: 5px;
+            background: #fff;
+            box-sizing: border-box;
+            &:active {
+                color:#980827;
+                border-color: #980827;
+            }
+            &.off{
+                color:#c6c6c6;
+                border-color: #c6c6c6;
+                &:active {
+                    color:#c6c6c6;
+                    border-color: #c6c6c6;
+                }
+            }
+        }
+    }
+    &_send {
+        margin-top: 20px;
+        width: 100%;
+        line-height: 76px;
+        font-size: 30px;
+        color: #fff;
+        background: #bb0a30;
+        border: 0;
+        border-radius: 10px;
+        &:active {
+            background: #980827;
+        }
+    }
+}

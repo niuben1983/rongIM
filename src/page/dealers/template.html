@@ -1,0 +1,34 @@
+<div class="dealers" :style="{overflow: openSlectCity ? 'hidden' : 'auto'}">
+    <loadFailed v-if="!load">页面读取失败，请稍候再试</loadFailed>
+
+    <template v-if="load">
+        <div class="topbar">
+            <span class="tb_site" @click="pickCurrCity">{{ currCity }}</span>
+            <span class="tb_tips">共{{ getDealerCount }}个经销商</span>
+        </div>
+        <div class="nav">
+            <span :class="{sort_default: true, active : tabActive == 'score'}" @click="sortScore()">综合排序<i></i></span>
+            <span :class="{sort_range: true, active : tabActive == 'distance'}" @click="sortDis()">距离优先<i></i></span>
+        </div>
+        <transition-group name="flip-list" tag="ul" class="list">
+            <router-link v-for="(item, key) in list" :key="item.id"
+                         :to="{ name: 'messagesDetail', params: {dealerId: item.id} }" tag="li">
+                <div class="l_info clearfix">
+                    <div class="l_info_pic"><img :src="item.url"
+                                                 alt=""></div>
+                    <dl class="l_info_text">
+                        <dt class="oneline">{{ item.name }}</dt>
+                        <dd class="oneline">{{ item.address }}</dd>
+                        <dd class="oneline">{{ item.tel }}</dd>
+                    </dl>
+                </div>
+                <div class="l_call"></div>
+                <div class="l_site" v-show="!isNaN(item.distance)"> 距您{{ item.distance }}km</div>
+            </router-link>
+        </transition-group>
+        <nav-bar current="dealers" :count="getMsgCount"></nav-bar>
+
+        <selectCity v-show="openSlectCity" :showProv="openSlectCity" :positionCity="positionCity"
+                    @pitch="pickCurrCityEnd"></selectCity>
+    </template>
+</div>

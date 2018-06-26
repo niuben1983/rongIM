@@ -1,0 +1,50 @@
+.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: inline-table;
+    background: #000000;
+    a {
+        display: table-cell;
+        position: relative;
+        width: 50%;
+        padding-top: 40px;
+        font-size: 26px;
+        text-align: center;
+        line-height: 60px;
+        color: #333;
+        &.active{
+            color: #fff;
+        }
+        &:nth-child(1) {
+            background:#fff  url("../../img/tab_home2.png") no-repeat center 16px;
+            background-size: 41px 32px;
+            &.active {
+                background: url("../../img/tab_home.png") no-repeat center 16px;
+                background-size: 41px 32px;
+            }
+        }
+        &:nth-child(2) {
+            background:#fff url("../../img/tab_msg2.png") no-repeat center 16px;
+            background-size: 36px 34px;
+            &.active {
+                background: url("../../img/tab_msg.png") no-repeat center 16px;
+                background-size: 36px 34px;
+            }
+        }
+        span {
+            position: absolute;
+            top: -5px;
+            padding: 2px 10px;
+            font-size: 22px;
+            color: #fff;
+            line-height: 26px;
+            background: #bb0a30;
+            border-radius: 15px;
+        }
+
+    }
+
+}
+

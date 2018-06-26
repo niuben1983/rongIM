@@ -1,0 +1,16 @@
+<div class="cars" @click.self="hideCars()">
+    <transition name="slide-inleft">
+        <div class="cars_box" v-show="showCar">
+            <div class="cars_head">奥迪</div>
+            <template v-for="(cars, key) in getCars">
+                <div class="cars_title">{{ key }}</div>
+                <ul class="cars_list">
+                    <li v-for="item in cars" class="clearfix" @click.stop="pickCar(item)">
+                        {{ item.name }}
+                    </li>
+                </ul>
+            </template>
+
+        </div>
+    </transition>
+</div>

@@ -1,0 +1,36 @@
+<div class="register" @click.self="closeReg">
+    <div class="register_main">
+        <div class="head">
+            <div class="head_pic clearfix"><img :src="svrInfo.headImg" alt=""></div>
+            <dl class="head_text">
+                <dt>{{ svrInfo.name }}邀请您登记客户信息</dt>
+                <dd>请输入真实信息，我会在第一时间联系您</dd>
+            </dl>
+        </div>
+        <form action="" class="form">
+            <ul>
+                <li>
+                    <span class="name">意向车系：</span>
+                    <span class="r_select" :style="{ color: currCarStyle }" @click="pickCar">{{ currCar }}</span>
+                </li>
+                <li>
+                    <span class="name">姓名：</span>
+                    <input class="r_inp" type="text" v-model="userName" placeholder="请输入2-8个汉字" maxlength="8">
+                </li>
+                <li>
+                    <span class="name">手机号：</span>
+                    <input class="r_inp" type="text" v-model="userPhone" placeholder="请输入11位手机号" maxlength="11">
+                </li>
+                <li>
+                    <span class="name">购车地区：</span>
+                    <span class="r_select" :style="{ color: currCityStyle }" @click="pickCurrCity">{{ currCity }}</span>
+                </li>
+            </ul>
+            <a class="send" @click.prevent="send()">完成</a>
+        </form>
+
+    </div>
+
+    <selectCity v-show="openSlectCity" :showProv="openSlectCity" :positionCity="positionCity" @pitch="pickCurrCityEnd"></selectCity>
+    <selectCar v-show="openSlectCar" :showCar="openSlectCar" @carPitch="pickCarEnd"></selectCar>
+</div>

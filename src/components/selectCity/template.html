@@ -1,0 +1,33 @@
+<div class="cars" :style="{overflow: showCity ? 'hidden' : 'auto'}" @click.self="hideProvs()">
+    <transition name="slide-inleft">
+        <div class="provs_box" v-show="showProv" key="provs">
+            <div class="provs_title">当前定位城市</div>
+            <div class="provs_line">{{ positionCity || '无法定位当前所在地' }}</div>
+            <div class="provs_title">直辖市</div>
+            <div class="provs_line">
+                <span class="provs_line_pr" @click.stop="pickCity('F85AF42B-8824-4DAD-9742-95FA51C6E60B', '北京')">北京</span>
+                <span class="provs_line_pr" @click.stop="pickCity('492C390A-F56E-4A09-A445-08F23BB86E14', '天津')">天津</span>
+                <span class="provs_line_pr" @click.stop="pickCity('CD7536C5-B115-4F4C-BBF0-B683C5EB9E4E', '上海')">上海</span>
+                <span class="provs_line_pr" @click.stop="pickCity('BF0A961B-81F0-4E65-ACED-6574EBB134EB', '重庆')">重庆</span>
+            </div>
+            <div class="provs_list">
+                <dl v-if="prov.length > 0" v-for="(prov, key) in provs" :key="key">
+                    <dt class="provs_title">{{ key | upperCase }}</dt>
+                    <dd v-for="item in prov" @click.stop="pickProv(item.id, item.name)" class="provs_line">{{
+                        item.name }}
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </transition>
+    <transition name="slide-inleft">
+        <div class="provs_city" v-show="showCity" key="city">
+            <div class="provs_city_location" @click.stop="backProvs()">{{ pitchProv }}</div>
+            <ul>
+                <li v-for="city in citys" @click.stop="pickCity(city.id, city.name)" class="provs_line">{{
+                    city.name }}
+                </li>
+            </ul>
+        </div>
+    </transition>
+</div>

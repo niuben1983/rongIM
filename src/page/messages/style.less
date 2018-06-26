@@ -1,0 +1,83 @@
+.messages {
+    padding-bottom: 100px;
+    background: #eee;
+    li {
+        height:180px;
+        background:#fff;
+        position:relative;
+        padding:0 30px;
+        box-sizing:border-box;
+        margin-bottom:6px;
+        &:last-child {
+            border-bottom: 0;
+        }
+        .l_avatar {
+            width:100px;
+            height:100px;
+            position:absolute;
+            left:30px;
+            top:50%;
+            transform:translate(0, -50%);
+            //background:salmon;
+            em {
+                position:absolute;
+                right:-4px;
+                top:-4px;
+                padding: 2px 10px;
+                font-size: 22px;
+                color: #fff;
+                line-height: 26px;
+                background: #bb0a30;
+                border-radius: 15px;
+            }
+            img {
+                width:100px;
+                height:100px;
+                border-radius:50px;
+            }
+        }
+        .l_con {
+            position:absolute;
+            width:558px;
+            left:160px;
+            top:50%;
+            transform:translate(0, -50%);
+            &_title {
+                margin-bottom:10px;
+                .name {
+                    color:#333;
+                    font-size:36px;
+                }
+                .line_ver {
+                    font-size: 12px;
+                }
+                .tag {
+                    color:#666;
+                    font-size:26px;
+                    display:inline-block;
+                    width:320px;
+                    vertical-align:middle;
+                }
+            }
+            &_main {
+                color:#999;
+                font-size:26px;
+                .text{
+                    display:inline-block;
+                    width:440px;
+                }
+                .time {
+                    float: right;
+                }
+            }
+        }
+    }
+    .nothing {
+        padding-top: 520px;
+        text-align: center;
+        font-size: 32px;
+        color: #333;
+        background: url("../../img/undefined.png") no-repeat center 190px;
+        background-size: 324px 306px;
+    }
+}

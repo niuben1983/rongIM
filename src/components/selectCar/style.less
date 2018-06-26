@@ -1,0 +1,79 @@
+.cars {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 175px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,.5) url("../../img/double_jt.png") no-repeat 100px center;
+    background-size: 52px 48px;
+    overflow-y: auto;
+    line-height: 40px;
+    z-index: 999;
+    &_box {
+        height: 100%;
+        overflow-y: auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0, .1);
+    }
+    &_head {
+        padding-left: 145px;
+        line-height: 108px;
+        font-size: 32px;
+        background: url("../../img/logo.png") no-repeat 46px center;
+        background-size: 67px 24px;
+    }
+    &_title {
+        padding-left: 28px;
+        line-height: 50px;
+        font-size: 28px;
+        background: #eee;
+    }
+    &_list {
+        background: #fff;
+        li {
+            margin-left: 31px;
+            font-size: 32px;
+            line-height: 88px;
+            border-bottom: 1px solid #f3f3f3;
+            &:last-child {
+                border-bottom: 0;
+            }
+            //position: relative;
+            //height: 140px;
+            //.cars_l_pic {
+            //    float: left;
+            //    width: 180px;
+            //    height: 120px;
+            //    padding: 10px 0 0 27px;
+            //    img {
+            //        width: 180px;
+            //        height: 120px;
+            //    }
+            //}
+            //.cars_l_text{
+            //    margin-left: 215px;
+            //    font-size: 32px;
+            //    line-height: 50px;
+            //    dt {
+            //        padding-top: 27px;
+            //    }
+            //}
+            //.cars_l_line {
+            //    position: absolute;
+            //    right: 0;
+            //    bottom: 0;
+            //    width: 525px;
+            //    height: 1px; /*no*/
+            //    overflow: hidden;
+            //    background: #f3f3f3;
+            //}
+            //&:last-child {
+            //    .cars_l_line {
+            //        display: none;
+            //    }
+            //}
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<div class="messages">
+    <ul class="msg_list">
+        <li class="clearfix" v-for="(item, key) in list" @click="linkDetail(item)">
+            <!-- <router-link :to="{ name: 'messagesDetail', params: {dealerId: item.dealerId }}"> -->
+                <div class="l_avatar">
+                    <em v-show="item.unreadMessageCount > 0">{{ item.unreadMessageCount | maxCount }}</em>
+                    <img :src="item.latestMessage.content.extra.counselor.headImg?item.latestMessage.content.extra.counselor.headImg:'http://static.qcdqcdn.com/wap/img/agent_ren.png.png' " alt="" onerror="this.onerror=null;this.src='http://static.qcdqcdn.com/wap/img/agent_ren.png.png'">
+                </div>
+                <div class="l_con">
+                    <div class="l_con_title">
+                        <span class="name">{{ item.latestMessage.content.extra.counselor.name }}</span>
+                        <span class="line_ver">|</span>
+                        <span class="tag oneline">{{ item.latestMessage.content.extra.dealer.dealerName }}</span>
+                    </div>
+                    <div class="l_con_main">
+                        <span class="text oneline">{{ item.latestMessage.messageType == 'ImageMessage' ? '图片' : (typeof item.latestMessage.content.content).toLowerCase() == 'object' ? '已完成信息登记' : item.latestMessage.content.content | formatEmoji }}</span>
+                        <span class="time">{{ item.latestMessage.sentTime | formatDateList }}</span>
+                    </div>
+                </div>
+            <!-- </router-link> -->
+        </li>
+    </ul>
+
+    <div class="nothing" v-if="isNothing">暂无会话</div>
+
+    <nav-bar current="messages" :count="getCount"></nav-bar>
+</div>

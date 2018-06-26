@@ -1,0 +1,74 @@
+.provs {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 175px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,.5) url("../../img/double_jt.png") no-repeat 100px center;
+    background-size: 52px 48px;
+    overflow-y: auto;
+    line-height: 40px;
+    z-index: 999;
+    &_box {
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0, .1);
+    }
+    &_title {
+        padding-left: 31px;
+        font-size: 28px;
+        line-height: 50px;
+        color: #828282;
+        background: #eee;
+    }
+    &_line {
+        margin-left: 31px;
+        font-size: 32px;
+        line-height: 88px;
+        &_pr {
+            padding-right: 55px;
+        }
+    }
+    &_location {
+        padding: 20px;
+    }
+    &_list {
+        dd {
+            border-bottom: 1px solid #f3f3f3;
+            background: url("../../img/arrow_r.png") no-repeat 502px center;
+            background-size: 12px 23px;
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+    }
+
+
+    &_city {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 554px;
+        height: 100%;
+        box-shadow: 0 0 10px rgba(0,0,0, .1);
+        &_location {
+            padding-left: 61px;
+            line-height: 88px;
+            font-size: 32px;
+            background: #eee url("../../img/arrow_ll.png") no-repeat 31px center;
+            background-size: 17px 31px;
+        }
+        ul {
+            overflow-y: auto;
+            height: 100%;
+            background: #fff;
+            li {
+                border-bottom: 1px solid #f3f3f3;
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+}

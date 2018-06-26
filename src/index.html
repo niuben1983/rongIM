@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>奥迪</title>
+    <meta name="applicable-device" content="mobile">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <script src="<%=htmlWebpackPlugin.options.files.flexible %>flexible.js"></script>
+    <script src="<%=htmlWebpackPlugin.options.files.flexible %>flexible_css.js"></script>
+    <script src="<%=htmlWebpackPlugin.options.files.IMSDK %>IMLib.min.js"></script>
+    <script src="<%=htmlWebpackPlugin.options.files.IMSDK %>Emoji.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=GrVnPrPqpXjmTyHivD2S0D1fHCr12edw"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/InfoBox/1.2/src/InfoBox_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/GeoUtils/1.2/src/GeoUtils_min.js"></script>
+
+</head>
+<body>
+<app id="app" class="index"></app>
+<!-- webpack的HtmlWebpackPlugin插件会根据入口JS文件生成script标签并插入在这里或实现按需加载 -->
+</body>
+</html>
